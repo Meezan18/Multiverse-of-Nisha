@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Quiz/',
+  base: '/Multiverse-of-Nisha/',
   plugins: [react(), tailwindcss()],
 })
