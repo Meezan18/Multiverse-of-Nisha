@@ -11,6 +11,8 @@ import { Sparkles } from "lucide-react";
 
 type GameState = "start" | "playing" | "result";
 
+const titleWords = "Welcome to Nisha's Multiverse".split(" ");
+
 export function QuizGame() {
   const [gameState, setGameState] = useState<GameState>("start");
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -112,28 +114,69 @@ export function QuizGame() {
               className="flex flex-col items-center gap-8 text-center"
             >
               <motion.div
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
+                initial={{ scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.8 }}
-                className="flex flex-col items-center gap-5"
+                className="flex flex-col items-center gap-6"
               >
                 <motion.span
-                  animate={{ scale: [1, 1.04, 1] }}
-                  transition={{ duration: 2.5, repeat: Infinity }}
-                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-xs font-semibold uppercase tracking-[0.2em] text-pink-200"
+                  initial={{ opacity: 0, y: -14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 border border-white/25 backdrop-blur-md shadow-[0_0_30px_rgba(217,70,239,0.25)] text-xs font-semibold uppercase tracking-[0.25em] text-pink-100"
                 >
                   <Sparkles className="w-4 h-4 text-pink-300" />
                   Personality Quiz
                 </motion.span>
 
-                <h1 className="text-4xl md:text-7xl font-black leading-tight bg-gradient-to-r from-pink-400 via-purple-400 to-violet-400 bg-clip-text text-transparent drop-shadow-[0_0_80px_rgba(192,132,252,0.5)]">
-                  Welcome to Nisha's Multiverse
+                <h1 className="hue-cycle relative text-4xl md:text-7xl font-black leading-[1.08] tracking-tight text-center">
+                  <span
+                    aria-hidden
+                    className="glow-pulse absolute inset-0 font-black leading-[1.08] tracking-tight bg-gradient-to-r from-emerald-100 via-emerald-300 to-emerald-400 bg-clip-text text-transparent blur-[40px] pointer-events-none select-none"
+                  >
+                    Welcome to Nisha's Multiverse
+                  </span>
+                  <motion.span
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      hidden: {},
+                      visible: {
+                        transition: { staggerChildren: 0.11, delayChildren: 0.2 },
+                      },
+                    }}
+                    className="relative block"
+                  >
+                    {titleWords.map((word, i) => (
+                      <motion.span
+                        key={i}
+                        variants={{
+                          hidden: { opacity: 0, y: 48, filter: "blur(12px)", scale: 0.95 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            filter: "blur(0px)",
+                            scale: 1,
+                            transition: { type: "spring", stiffness: 90, damping: 16 },
+                          },
+                        }}
+                        className="text-shimmer inline-block mr-[0.32em] bg-gradient-to-r from-emerald-100 via-emerald-300 to-emerald-400 bg-clip-text text-transparent will-change-transform"
+                      >
+                        {word}
+                      </motion.span>
+                    ))}
+                  </motion.span>
                 </h1>
 
-                <p className="text-lg md:text-xl text-purple-100/90 font-light max-w-2xl mx-auto">
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.6 }}
+                  className="text-lg md:text-xl text-purple-100/90 font-light max-w-2xl mx-auto drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]"
+                >
                   A chaotic little test of vibes, moods and questionable
                   decisions. Answer honestly — she can always tell.
-                </p>
+                </motion.p>
               </motion.div>
 
               <HeroCharacters />
