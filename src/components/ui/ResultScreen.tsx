@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
 import { RotateCcw, Crown } from "lucide-react";
+import rapunzelImg from "../../assets/characters/rapunzel.svg";
+import roseImg from "../../assets/characters/rose.svg";
+import burritoImg from "../../assets/characters/burrito.svg";
+import gremlinImg from "../../assets/characters/gremlin.svg";
+import princessImg from "../../assets/characters/princess.svg";
 
 interface ResultScreenProps {
   result: {
@@ -22,17 +27,17 @@ export function ResultScreen({
   const getCharacterImage = (character: string) => {
     switch (character) {
       case "rapunzel":
-        return "/src/assets/characters/rapunzel.svg";
+        return rapunzelImg;
       case "rose":
-        return "/src/assets/characters/rose.svg";
+        return roseImg;
       case "burrito":
-        return "/src/assets/characters/burrito.svg";
+        return burritoImg;
       case "gremlin":
-        return "/src/assets/characters/gremlin.svg";
+        return gremlinImg;
       case "princess":
-        return "/src/assets/characters/princess.svg";
+        return princessImg;
       default:
-        return "/src/assets/characters/rapunzel.svg";
+        return rapunzelImg;
     }
   };
 
